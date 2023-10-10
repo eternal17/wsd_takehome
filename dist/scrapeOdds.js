@@ -24,7 +24,8 @@ function scrapeHorseOdds(eventUrl) {
         const scrapedData = yield page.$$('.runner-body');
         const horseData = [];
         if (scrapedData.length === 0) {
-            throw new Error('Data could not be scraped. Here are a few reasons why: \n 1. Incorrect Url. \n 2. No css selector with given name found. \n 3. Race event may have finished.');
+            console.log('no data found');
+            return [];
         }
         for (const horseElement of scrapedData) {
             const horseName = yield horseElement.$eval('.runner-name-value', (element) => element.textContent);
@@ -35,9 +36,9 @@ function scrapeHorseOdds(eventUrl) {
             });
         }
         yield browser.close();
+        console.log('checking horse racing odds', horseData);
         return horseData;
     });
 }
 exports.scrapeHorseOdds = scrapeHorseOdds;
-scrapeHorseOdds('https://www.betfair.com/sport/horse-racing/meeting?eventId=32697743&raceTime=1696868520000&dayToSearch=20231009&marketId=924.378841461');
-//# sourceMappingURL=task1.js.map
+//# sourceMappingURL=scrapeOdds.js.map

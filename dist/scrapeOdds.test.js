@@ -9,17 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const task1_js_1 = require("./task1.js");
+const scrapeOdds_js_1 = require("./scrapeOdds.js");
 describe('scrapeHorseOdds', () => {
     it('should return an array of HorseData objects', () => __awaiter(void 0, void 0, void 0, function* () {
-        const horseData = yield (0, task1_js_1.scrapeHorseOdds)('https://www.betfair.com/sport/horse-racing/meeting?eventId=32697743&raceTime=1696868520000&dayToSearch=20231009&marketId=924.378841461');
+        const horseData = yield (0, scrapeOdds_js_1.scrapeHorseOdds)('https://www.betfair.com/sport/horse-racing/meeting?eventId=32700628&raceTime=1696872000000&dayToSearch=20231009&marketId=924.378966417');
         expect(Array.isArray(horseData)).toBe(true);
         expect(horseData.length).toBeGreaterThan(0);
         expect(horseData[0]).toHaveProperty('name');
         expect(horseData[0]).toHaveProperty('winningOdds');
     }));
-    it('should throw an error if no data is scraped', () => __awaiter(void 0, void 0, void 0, function* () {
-        yield expect((0, task1_js_1.scrapeHorseOdds)('https://www.betfair.com/sport/horse-racing/meeting?eventId=32697743&raceTime=1696863000000&dayToSearch=20231009&marketId=924.378841355')).rejects.toThrowError('Data could not be scraped. Here are a few reasons why: \n 1. Incorrect Url. \n 2. No css selector with given name found. \n 3. Race event may have finished.');
+    it('should return an empty array if no data is scraped', () => __awaiter(void 0, void 0, void 0, function* () {
+        const horseData = yield (0, scrapeOdds_js_1.scrapeHorseOdds)('https://www.betfair.com/sport/horse-racing/meeting?eventId=32697743&raceTime=1696863000000&dayToSearch=20231009&marketId=924.378841355');
+        expect(Array.isArray(horseData)).toBe(true);
+        expect(horseData.length).toBe(0);
     }));
 });
-//# sourceMappingURL=task1.test.js.map
+//# sourceMappingURL=scrapeOdds.test.js.map

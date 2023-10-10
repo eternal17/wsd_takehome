@@ -23,11 +23,11 @@ export async function scrapeHorseOdds(eventUrl: string): Promise<HorseData[]> {
 
   // initialise an empty array for the horse data
   const horseData: HorseData[] = [];
-  // if there is no scraped data, throw an error
+
+  // if there is no scraped data, return an empty array
   if (scrapedData.length === 0) {
-    throw new Error(
-      'Data could not be scraped. Here are a few reasons why: \n 1. Incorrect Url. \n 2. No css selector with given name found. \n 3. Race event may have finished.'
-    );
+    console.log('no data found');
+    return [];
   }
 
   // loop through scraped data
@@ -53,11 +53,11 @@ export async function scrapeHorseOdds(eventUrl: string): Promise<HorseData[]> {
   // close the browser.
   await browser.close();
 
-  // console.log('checking horse racing odds', horseData);
+  console.log('checking horse racing odds', horseData);
   // return the data
   return horseData;
 }
 
-scrapeHorseOdds(
-  'https://www.betfair.com/sport/horse-racing/meeting?eventId=32697743&raceTime=1696868520000&dayToSearch=20231009&marketId=924.378841461'
-);
+// scrapeHorseOdds(
+//   'https://www.betfair.com/sport/horse-racing/meeting?eventId=32700712&raceTime=1696941420000&dayToSearch=20231010&marketId=924.378972469'
+// );
