@@ -18,5 +18,6 @@
     {
       "files": ["*.ts"]
     }
-  ]
+  ],
+  "ignorePatterns": ["dist/"]
 }

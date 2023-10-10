@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const scrapeOdds_1 = require("./scrapeOdds");
+const scrapeOdds_1 = require("../task_1/scrapeOdds");
 exports.app = (0, express_1.default)();
 const port = 8080;
 exports.app.use(express_1.default.json());

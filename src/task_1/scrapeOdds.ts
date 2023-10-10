@@ -5,7 +5,8 @@ export interface HorseData {
   winningOdds: string | null;
 }
 
-// Async function that returns a array of HorseData objects
+// Async function that returns an array of HorseData objects.
+// asumming that a valid url is provided.
 export async function scrapeHorseOdds(eventUrl: string): Promise<HorseData[]> {
   // launches a browser using puppeteer
   const browser = await puppeteer.launch({
@@ -19,6 +20,7 @@ export async function scrapeHorseOdds(eventUrl: string): Promise<HorseData[]> {
   await page.goto(eventUrl);
 
   // scrape the neccessary data.
+
   const scrapedData = await page.$$('.runner-body');
 
   // initialise an empty array for the horse data
@@ -26,7 +28,6 @@ export async function scrapeHorseOdds(eventUrl: string): Promise<HorseData[]> {
 
   // if there is no scraped data, return an empty array
   if (scrapedData.length === 0) {
-    console.log('no data found');
     return [];
   }
 
@@ -52,12 +53,19 @@ export async function scrapeHorseOdds(eventUrl: string): Promise<HorseData[]> {
   }
   // close the browser.
   await browser.close();
-
-  console.log('checking horse racing odds', horseData);
   // return the data
   return horseData;
 }
 
-// scrapeHorseOdds(
-//   'https://www.betfair.com/sport/horse-racing/meeting?eventId=32700712&raceTime=1696941420000&dayToSearch=20231010&marketId=924.378972469'
-// );
+// example usage of the function usage
+
+const url =
+  'https://www.betfair.com/sport/horse-racing/meeting?eventId=32704217&raceTime=1696962480000&dayToSearch=20231010&marketId=924.379071852';
+
+scrapeHorseOdds(url).then((data) => {
+  if (data.length > 0) {
+    console.log('Scraped horse odds', data);
+  } else {
+    console.log('No data found');
+  }
+});

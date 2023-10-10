@@ -32,10 +32,9 @@ describe('POST /odds', () => {
             .send({ eventUrl: 'https://notokenprovided.com' });
         expect(response.status).toBe(401);
     }));
-    test('should return 404 if could not scrape odds from given url', () => __awaiter(void 0, void 0, void 0, function* () {
+    test('should return 404 if odds could not be scraped from given url', () => __awaiter(void 0, void 0, void 0, function* () {
         const user = { name: 'admin', password: 'password' };
         const token = jsonwebtoken_1.default.sign(user, secretKey);
-        console.log('checking token', token);
         const response = yield (0, supertest_1.default)(server_1.app)
             .post('/odds')
             .set('Authorization', `Bearer ${token}`)

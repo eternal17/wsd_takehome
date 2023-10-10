@@ -26,10 +26,10 @@ describe('POST /odds', () => {
     expect(response.status).toBe(401);
   });
 
-  test('should return 404 if could not scrape odds from given url', async () => {
+  test('should return 404 if odds could not be scraped from given url', async () => {
+    // mock a valid token
     const user = { name: 'admin', password: 'password' };
     const token = jwt.sign(user, secretKey);
-    console.log('checking token', token);
     const response = await request(app)
       .post('/odds')
       .set('Authorization', `Bearer ${token}`)

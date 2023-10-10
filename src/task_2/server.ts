@@ -1,6 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { scrapeHorseOdds } from './scrapeOdds';
+import { scrapeHorseOdds } from '../task_1/scrapeOdds';
 
 export const app: Application = express();
 
