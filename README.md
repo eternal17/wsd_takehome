@@ -81,6 +81,6 @@ npm test -- --testPathPattern=dist/task_2/server.test.js
 
 - For Task 2, authenticate using the /login endpoint to obtain a JWT token, then use it in the Authorization header for requests to /odds.
 
-- Feel free to reach out if you have any issues or questions!
-
 - All TypeScript files are in the src folder, including tests.
+
+- Feel free to reach out if you have any issues or questions!
