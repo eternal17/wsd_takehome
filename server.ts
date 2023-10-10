@@ -2,7 +2,7 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { scrapeHorseOdds } from './scrapeOdds';
 
-const app: Application = express();
+export const app: Application = express();
 
 const port = 8080;
 
@@ -58,7 +58,7 @@ app.post('/odds', authToken, async (req: Request, res: Response) => {
   const odds = await scrapeHorseOdds(eventUrl);
   if (odds.length === 0)
     return res
-      .status(401)
+      .status(404)
       .send('no odds found, ensure correct url is provided');
   res.json({ odds: odds });
 });
