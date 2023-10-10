@@ -73,6 +73,12 @@ Run integration tests using the following command from the repository root:
 npm test -- --testPathPattern=dist/task_2/server.test.js
 ```
 
+## Assumptions
+
+- Correct url format is given as argument for scraping odds. No empty/random string.
+
+- For task 2, assuming user already has registered an account. Not considering any registration / password encryption.
+
 ## Notes
 
 - Ensure that you have Node.js and npm installed on your system.
